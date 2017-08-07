@@ -1,0 +1,23 @@
+{
+  "name": "sticker-share-client",
+  "version": "1.0.0",
+  "description": "client side of sticker-share",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "charlie",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "git+https://github.com/DanielRosenwasser/vue.git#540a38fb21adb7a7bc394c65e23e6cffb36cd867"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "ts-loader": "^2.3.2",
+    "typescript": "^2.4.2",
+    "vue-loader": "^13.0.4",
+    "vue-template-compiler": "^2.2.1",
+    "webpack": "^3.4.1"
+  }
+}

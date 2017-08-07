@@ -10,7 +10,9 @@ var index = require('./routes/index')
 var users = require('./routes/users')
 
 var app = express()
+
 // connect DB
+console.log(process.env)
 
 // load controllers
 const apiControllers = require('./controller/apiControllers')
@@ -50,3 +52,4 @@ app.use(function (err, req, res, next) {
 })
 
 module.exports = app
+
