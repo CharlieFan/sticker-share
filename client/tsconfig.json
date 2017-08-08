@@ -1,22 +1,33 @@
 {
     "compilerOptions": {
-        "outDir": "./built/",
+        "baseUrl": "./src",
         "rootDirs": [
             "./src"
         ],
         "sourceMap": true,
         "strict": true,
         "noImplicitReturns": true,
-        "module": "commonjs",
+        "module": "es2015",
         "moduleResolution": "node",
         "target": "es5",
+        "experimentalDecorators": true,
         "typeRoots": [
             "node_modules/@types",
             "types"
+        ],
+        "allowSyntheticDefaultImports": true,
+        "lib": [
+            "dom",
+            "es5",
+            "es2015.promise"
         ]
     },
     "include": [
-        "./src/**/*"
+        "src/**/*.vue",
+        "src/**/*"
+    ],
+    "exclude": [
+        "./dist"
     ]
 }
 
