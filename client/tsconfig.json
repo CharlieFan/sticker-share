@@ -1,6 +1,9 @@
 {
     "compilerOptions": {
         "outDir": "./built/",
+        "rootDirs": [
+            "./src"
+        ],
         "sourceMap": true,
         "strict": true,
         "noImplicitReturns": true,
@@ -9,11 +12,11 @@
         "target": "es5",
         "typeRoots": [
             "node_modules/@types",
-            "./types"
+            "types"
         ]
     },
     "include": [
-        "src/**/*"
+        "./src/**/*"
     ]
 }
 
