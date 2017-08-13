@@ -1,11 +1,15 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: {
+        app: './src/index.ts'
+    },
     output: {
-        path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist/',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
         filename: 'build.js'
     },
     module: {
@@ -41,20 +45,38 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        port: 3000,
+        historyApiFallback: true,
+        hotOnly: true,
+        // host: '192.168.10.203',
+        noInfo: true
+    },
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            title: 'Stickers',
+            template: './index.html'
+        })
+    ],
     resolve: {
         extensions: ['.ts', '.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
-    devServer: {
-        historyApiFallback: true,
-        noInfo: true
-    },
     performance: {
         hints: false
     },
-    devtool: '#eval-source-map'
+    devtool: 'inline-source-map'
+    // devtool: '#eval-source-map'
+}
+
+if (process.env.NODE_ENV === 'dev') {
+    module.exports.plugins = (module.exports.plugins || []).concat([
+        new webpack.HotModuleReplacementPlugin()
+    ])
 }
 
 if (process.env.NODE_ENV === 'production') {

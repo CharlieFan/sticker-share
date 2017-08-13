@@ -7,8 +7,9 @@
     </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .greeting {
     font-size: 20px;
+    color: red;
 }
 </style>
