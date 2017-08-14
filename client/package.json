@@ -4,8 +4,8 @@
   "description": "client side of sticker-share",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack-dev-server --open",
+    "build": "webpack --env=prod --progress --profile --colors",
+    "dev": "webpack-dev-server --env=dev --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "charlie",
