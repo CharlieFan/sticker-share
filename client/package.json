@@ -4,8 +4,9 @@
   "description": "client side of sticker-share",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --env=prod --progress --profile --colors",
-    "dev": "webpack-dev-server --env=dev --open",
+    "build": "webpack --progress --color --config ./webpack/webpack.prod.js",
+    "dev": "webpack-dev-server --open --config ./webpack/webpack.dev.js",
+    "start": "webpack-dev-server --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "charlie",
@@ -27,6 +28,7 @@
     "vue-property-decorator": "^5.2.1",
     "vue-template-compiler": "^2.4.2",
     "webpack": "^3.4.1",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.7.1",
+    "webpack-merge": "^4.1.0"
   }
 }
