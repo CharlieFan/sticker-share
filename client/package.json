@@ -16,6 +16,7 @@
     "vue-router": "^2.7.0"
   },
   "devDependencies": {
+    "@types/node": "^8.0.22",
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.28.4",
     "html-webpack-plugin": "^2.30.1",
