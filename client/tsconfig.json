@@ -24,7 +24,6 @@
         ]
     },
     "include": [
-        "src/**/*.vue",
         "src/**/*"
     ],
     "exclude": [
