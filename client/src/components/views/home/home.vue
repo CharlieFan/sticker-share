@@ -1,16 +1,22 @@
 <template>
-    <div class="app">
-        <router-view></router-view>
+    <div class="view-home">
+        <hello></hello>
+        <h1>Home view</h1>
     </div>
 </template>
-<style lang="scss" src="./app.scss" scoped></style>
+<style lang="scss" scoped></style>
 
 <script lang="ts">
 import Vue from 'vue'
 import { Component, Prop, Watch } from 'vue-property-decorator'
+import Hello from 'components/tags/hello.vue'
 
-@Component
-export default class App extends Vue {
+@Component({
+    components: {
+        Hello
+    }
+})
+export default class Home extends Vue {
     name = 'Charlie'
 
     get newName() {
@@ -22,3 +28,5 @@ export default class App extends Vue {
     }
 }
 </script>
+
+
