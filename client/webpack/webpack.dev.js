@@ -4,7 +4,7 @@ const CommonConfig = require('./webpack.common')
 const webpack = require('webpack')
 
 module.exports = Merge(CommonConfig, {
-    devtool: '#eval-source-map',
+    devtool: '#cheap-module-eval-source-map',
     devServer: {
         port: 3000,
         historyApiFallback: true,

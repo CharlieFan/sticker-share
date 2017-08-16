@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Login from 'components/views/login/login.vue'
-
-const Login = (r: any) => require.ensure([], r(require('../components/views/login/login.vue')), 'login')
-
 Vue.use(VueRouter)
 
+// Request components
+const Login = (resolve) => { require.ensure([], () => {resolve(require('components/views/login/login.vue'))}, 'public')}
+
+// routes here:
 const routes = [
     {
         path: '/login',
@@ -13,7 +13,6 @@ const routes = [
         component: Login
     }
 ]
-
 
 const router = new VueRouter({
     routes
