@@ -2,6 +2,7 @@
     <div class="view-home">
         <hello></hello>
         <h1>Home view</h1>
+        <img src="~assets/dragon_maid.jpeg">
     </div>
 </template>
 <style lang="scss" scoped></style>
@@ -28,5 +29,3 @@ export default class Home extends Vue {
     }
 }
 </script>
-
-

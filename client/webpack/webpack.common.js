@@ -39,11 +39,16 @@ module.exports = {
                 }
             },
             {
-                test: /\.(png|jpg|gif|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]?[hash]'
-                }
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            name: 'assets/[name].[ext]?[hash]'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -60,6 +65,7 @@ module.exports = {
             'node_modules'
         ],
         alias: {
+            'assets': path.resolve(__dirname, '../src/assets'),
             'vue$': 'vue/dist/vue.esm.js'
         }
     },

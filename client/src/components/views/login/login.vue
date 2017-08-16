@@ -12,7 +12,9 @@ import { Component, Prop, Watch } from 'vue-property-decorator'
 
 @Component
 export default class Login extends Vue {
-
+    created() {
+        console.log(this.$route)
+    }
 }
 </script>
 

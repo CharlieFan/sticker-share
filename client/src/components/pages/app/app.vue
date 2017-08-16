@@ -11,14 +11,8 @@ import { Component, Prop, Watch } from 'vue-property-decorator'
 
 @Component
 export default class App extends Vue {
-    name = 'Charlie'
-
-    get newName() {
-        return `${this.name} Fan`
-    }
-    
     created() {
-        console.log(this.name)
+        console.log(this.$route)
     }
 }
 </script>
