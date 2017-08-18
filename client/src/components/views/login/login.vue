@@ -5,17 +5,3 @@
 </template>
 
 <style lang="scss" scoped></style>
-
-<script lang="ts">
-import Vue from 'vue'
-import { Component, Prop, Watch } from 'vue-property-decorator'
-
-@Component
-export default class Login extends Vue {
-    created() {
-        console.log(this.$route)
-    }
-}
-</script>
-
-

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from 'components/pages/app/app.vue'
+import App from 'components/pages/app/app'
 import VueRouter from 'vue-router'
 import router from 'routes'
 

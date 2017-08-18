@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // Request components
-const Home = (resolve) => { require.ensure([], () => {resolve(require('components/views/home/home.vue'))}, 'home')}
-const Login = (resolve) => { require.ensure([], () => {resolve(require('components/views/login/login.vue'))}, 'public')}
+const Home = (resolve) => { require.ensure([], () => {resolve(require('components/views/home/home'))}, 'home')}
+const Login = (resolve) => { require.ensure([], () => {resolve(require('components/views/login/login'))}, 'public')}
 
 // routes here:
 const routes = [
