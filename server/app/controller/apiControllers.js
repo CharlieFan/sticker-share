@@ -1,7 +1,11 @@
 const path = require('path')
 const User = require(path.resolve('app/model/user'))
 
-class Api {
+const printsomething = function() {
+    console.log('hahah')
+}
+
+module.exports = {
     async signup (ctx) {
         // console.log(ctx.request.body)
         let username = ctx.request.body.username
@@ -15,17 +19,15 @@ class Api {
         })
 
         try {
-            let res = await newUser.save()
+            await newUser.save()
+            ctx.response.status = 200
+            ctx.response.message = 'saved successfull'
         } catch (err) {
-            console.log(err.message)
             ctx.response.status = 400
             ctx.response.message = err.message
         }
-    }
-
+    },
     async signin (ctx) {
         console.log(ctx)
     }
 }
-
-module.exports = new Api()

@@ -7,7 +7,14 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: function(v) {
+                // return /\d{3}-\d{3}-\d{4}/.test(v);
+                return v.length > 8
+            },
+            message: 'Pasword does not meet the requirment!'
+        }
     },
     email: {
         type: String,
