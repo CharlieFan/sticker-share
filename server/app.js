@@ -13,14 +13,16 @@ mongoose.connect(config.dbString, {
     useMongoClient: true
 })
 
+app.keys = ['i have a secret and i do not want to tell you']
+
 app
     .use(async function(ctx, next) {
         console.log(`Loading ${ctx.method} ${ctx.url}`)
         await next()
     })
     .use(bodyParser()) // bodyParser should be registered before router
+    .use(statics)
     .use(router.routes())
     .use(router.allowedMethods())
-    .use(statics)
 
 app.listen(3001)

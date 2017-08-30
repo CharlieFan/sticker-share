@@ -20,13 +20,7 @@ router.get('/api/getUsersInfo', function(ctx, next) {
     }
 })
 
-router.post('/api/signin', function(ctx, next) {
-    let username = ctx.request.body.username || ''
-    let password = ctx.request.body.password || ''
-
-    console.log(`username: ${username}, password: ${password}`)
-    controllers.signin(ctx)
-})
+router.post('/api/signin', controllers.signin)
 
 router.post('/api/signup', controllers.signup)
 

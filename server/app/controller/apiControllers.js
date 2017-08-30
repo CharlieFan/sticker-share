@@ -24,10 +24,40 @@ module.exports = {
             ctx.response.message = 'saved successfull'
         } catch (err) {
             ctx.response.status = 400
-            ctx.response.message = err.message
+            if (err.code === 11000) {
+                ctx.response.message = 'This user exists already'
+
+            } else {
+                ctx.response.message = err.message
+            }
         }
     },
     async signin (ctx) {
-        console.log(ctx)
+        console.log(ctx.request.body)
+        let email = ctx.request.body.email
+        let password = ctx.request.body.password
+
+        try {
+            let result = await User.findOne({
+                email: email
+            })
+
+            if (result) {
+                if (password === result.password) {
+                    ctx.response.status = 200
+                    ctx.response.message = 'signin successfully'
+                } else {
+                    ctx.response.status = 200
+                    ctx.response.message = 'wrong password'
+                }
+
+            } else {
+                ctx.response.message = 'User does not exist'
+            }
+        } catch (err) {
+            ctx.response.status = 400
+            ctx.response.message = err.message
+        }
+    
     }
 }

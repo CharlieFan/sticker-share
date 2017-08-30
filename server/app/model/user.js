@@ -3,11 +3,11 @@ const Schema = mongoose.Schema
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: [true, 'Username cannot be blank ']
     },
     password: {
         type: String,
-        required: true,
+        required: [true, 'Password is required!'],
         validate: {
             validator: function(v) {
                 // return /\d{3}-\d{3}-\d{4}/.test(v);
@@ -19,7 +19,7 @@ const UserSchema = new Schema({
     email: {
         type: String,
         unique: true,
-        required: true
+        required: [true, 'Email cannot be blank!']
     }
 })
 
