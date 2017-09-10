@@ -9,7 +9,10 @@ router.get('/', function(ctx, next) {
     ctx.response.body = fs.createReadStream(__dirname + '/views/index.html')
     // ctx.response.type = 'json'
     // ctx.body = ctx
-    console.log(ctx.session)
+    let n = ctx.session.views || 0
+    ctx.session.views = ++n
+    console.log('viewNum', ctx.session.views) //log 输出
+
 })
 
 router.get('/date', function(ctx, next) {
