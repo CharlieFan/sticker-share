@@ -45,7 +45,8 @@ module.exports = {
             if (result) {
                 if (password === result.password) {
                     ctx.response.status = 200
-                    ctx.response.message = 'signin successfully'
+                    ctx.response.message = `signin successfully ${result.id}`
+                    ctx.session.uid = result.id
                 } else {
                     ctx.response.status = 200
                     ctx.response.message = 'wrong password'
