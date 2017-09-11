@@ -1,4 +1,5 @@
 const session = require('koa-session')
+const SessionStore = require('../model/sessionStore')
 
 sessionConfig = {
     key: 'koa:sess',
@@ -7,17 +8,7 @@ sessionConfig = {
     httpOnly: true,
     signed: true,
     rolling: false,
-    store: {
-        async get(key, maxAge, { rolling }) {
-            console.log('get:', key)
-        },
-        async set(key, sess, maxAge, { rolling, changed }) {
-            console.log('set:', key)
-        },
-        async destroy(key) {
-            console.log(key)
-        }
-    }
+    store: new SessionStore() 
 }
 module.exports = function(app) {
     return session(sessionConfig, app)

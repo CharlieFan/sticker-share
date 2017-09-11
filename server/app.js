@@ -2,18 +2,19 @@ const Koa = require('koa')
 const serve = require('koa-static')
 const bodyParser = require('koa-bodyparser')
 const mongoose = require('mongoose')
-// const session = require('koa-session')
 const session = require('./app/controller/session')
 const router = require('./app/router')
 const config = require('./config')
 const statics = serve('./app/public')
 const app = new Koa()
 
-// connect to database
+// connect to database (mongodb)
 mongoose.Promise = global.Promise
 mongoose.connect(config.dbString, {
     useMongoClient: true
 })
+
+
 
 app.keys = ['i have a secret and i do not want to tell you']
 
