@@ -10,12 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "ioredis": "^3.1.4",
+    "jsonwebtoken": "^8.0.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
     "koa-session": "^5.5.0",
     "koa-static": "^4.0.1",
     "koa-views": "^6.0.2",
-    "mongoose": "^4.11.9"
+    "mongoose": "^4.11.9",
+    "validator": "^8.2.0"
   }
 }
