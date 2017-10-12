@@ -5,7 +5,19 @@ const fs = require('fs')
 const controllers = require(path.resolve(__dirname, 'controller'))
 
 // console.log(controllers)
+let authen = async function(ctx, next) {
+    let a = false
+    try {
+        if (!a) {
+            ctx.throw(403, 'authentication failed')
+        }
 
+        await next()
+    } catch (err) {
+        ctx.response.status = 403
+        ctx.response.message = err.message
+    }
+}
 // GET
 router.get('/', function(ctx, next) {
     ctx.response.type = 'html'
@@ -16,7 +28,8 @@ router.get('/date', function(ctx, next) {
     ctx.response.body = new Date()
 })
 
-router.get('/api/getUsersInfo', controllers.UserController.getUser)
+router
+    .get('getUserInfo', '/api/getUserInfo/:id', authen, controllers.UserController.getUser)
 
 // POST
 router

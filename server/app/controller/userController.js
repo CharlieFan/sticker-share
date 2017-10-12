@@ -16,14 +16,17 @@ const generateToken = function(user) {
 }
 
 class UserController {
-    static async getUser(ctx) {
+    static async getUser(ctx, next) {
+        // let token = ctx.request.header['x-auth']
+        // let decode = jwt.verify(token, '#charlieHasSalt2017')
+        // console.log(decode)
         ctx.response.type = 'json'
         ctx.response.body = {
             "username": "charlie"
         }
     }
 
-    static async signup (ctx) {
+    static async signup (ctx, next) {
         // console.log(ctx.request.body)
         let newUser = new User({
             username: ctx.request.body.username,
@@ -52,7 +55,7 @@ class UserController {
         }
     }
 
-    static async signin (ctx) {
+    static async signin (ctx, next) {
         // console.log(ctx.request.body)
         
         let email = ctx.request.body.email
