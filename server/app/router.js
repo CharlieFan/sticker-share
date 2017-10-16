@@ -3,6 +3,7 @@ const Router = require('koa-router')
 const router = new Router()
 const fs = require('fs')
 const controllers = require(path.resolve(__dirname, 'controller'))
+const authenticate = controllers.UserController.authentication
 
 // console.log(controllers)
 let authen = async function(ctx, next) {
@@ -19,9 +20,10 @@ let authen = async function(ctx, next) {
     }
 }
 // GET
-router.get('/', function(ctx, next) {
+router.get('/', async function(ctx, next) {
     ctx.response.type = 'html'
     ctx.response.body = fs.createReadStream(__dirname + '/views/index.html')
+    await next()
 })
 
 router.get('/date', function(ctx, next) {
@@ -29,7 +31,7 @@ router.get('/date', function(ctx, next) {
 })
 
 router
-    .get('getUserInfo', '/api/getUserInfo/:id', authen, controllers.UserController.getUser)
+    .get('getUserInfo', '/api/getUserInfo/:id', authenticate, controllers.UserController.getUser)
 
 // POST
 router

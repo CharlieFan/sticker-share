@@ -1,19 +1,7 @@
 const path = require('path')
 const User = require(path.resolve('app/model/user'))
-const jwt = require('jsonwebtoken')
-
-const generateToken = function(user) {
-    let access = 'auth'
-    let token = jwt.sign({
-        id: user.id,
-        access
-    }, '#charlieHasSalt2017').toString()
-
-    return {
-        access,
-        token
-    }
-}
+const tokenMethod = require(path.resolve('app/middleware/token'))
+const redis = require(path.resolve('app/model/redis'))
 
 class UserController {
     static async getUser(ctx, next) {
@@ -53,6 +41,8 @@ class UserController {
                 ctx.response.message = err.message
             }
         }
+
+        await next()
     }
 
     static async signin (ctx, next) {
@@ -68,13 +58,11 @@ class UserController {
             
             if (user) {
                 if (password === user.password) {
-                    let token = generateToken(user)
-                    user.tokens.push(token)
-                    user.save()
+                    let token = tokenMethod.generateToken(user)
+                    await redis.set(user.id, token, 'EX', 6 * 3600)
                     ctx.response.set('x-auth', token.token)
                     ctx.response.status = 200
                     ctx.response.message = `signin successfully ${user.id}`
-                    ctx.session.uid = user.id
                     ctx.response.type = 'json'
                     ctx.response.body = {
                         user_id: user.id,
@@ -93,7 +81,29 @@ class UserController {
             ctx.response.status = 400
             ctx.response.message = err.message
         }
+
+        await next()
+    }
+
+    static async authentication(ctx, next) {
+        let token = ctx.request.header['x-auth']
         
+        if (!token) {
+            ctx.throw(401, 'authentication failed')
+        }
+
+        let info = tokenMethod.decodeToken(token)
+
+        try {
+            let res = JSON.parse(await redis.get(info.id))
+            if (res.token !== token) {
+                ctx.throw(401, 'autntication failed')
+            }
+        } catch (err) {
+            ctx.throw(401, 'autntication failed')
+        }
+        
+        await next()
     }
 }
 
